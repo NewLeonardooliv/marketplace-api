@@ -9,12 +9,13 @@ services:
   #   volumes:
   #     - .:/app
   #   restart: always
-  rabbitmq:
-     image: rabbitmq:3-management
-     ports:
-       - "5672:5672"
-       - "15672:15672"
-     environment:
-       - RABBITMQ_DEFAULT_USER=guest
-       - RABBITMQ_DEFAULT_PASS=guest
-       - RABBITMQ_DEFAULT_VHOST=/
+ rabbitmq:
+    image: rabbitmq:latest
+    ports:
+      - "5672:5672"  # Porta para conexão com clientes
+      - "15672:15672"  # Porta para o RabbitMQ Management UI
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    volumes:
+      - ./rabbitmq.config:/etc/rabbitmq/rabbitmq.config
